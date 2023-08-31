@@ -1,4 +1,5 @@
-﻿using Autofac;
+using Autofac;
+using System.Reflection.Metadata;
 using WebApi.Autofac.Services;
 using WebApi.Autofac.Services.Impl;
 
@@ -8,7 +9,6 @@ namespace WebApi.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Implementation_Class>().As<ISample>().SingleInstance();
 
 
             // Transient
@@ -17,17 +17,14 @@ namespace WebApi.Autofac
 
 
             //// Scoped
-            //builder.RegisterType<Implementation_Class>().As<ISample>()
-            //    .InstancePerLifetimeScope();
+            builder.RegisterType<Implementation_Class>().As<ISample>()
+                .InstancePerLifetimeScope();
 
             //// Singleton
             //builder.RegisterType<Implementation_Class>().As<ISample>()
             //    .SingleInstance();
 
-            // Scan an assembly for components
-            //builder.RegisterAssemblyTypes(typeof(AssemblyReference).Assembly)
-            //       .Where(t => t.Name.EndsWith("Implementation"))
-            //       .AsImplementedInterfaces();
+
 
         }
     }
